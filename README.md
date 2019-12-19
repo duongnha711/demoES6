@@ -600,7 +600,50 @@ Funtion App - return:
     </BrowserRouter>
 
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//React buoi 9: tong ket kien thuc
 
+/* viết action:
+export 1 hàm actName ( có tham số or ko tuỳ )
+    -> return 1 hàm với đối số là dispatch (***ko phải return hàm dispatch)
+        -> trong hàm{} gọi Axios
+            -> trong .then() -> gọi hàm dispatch({type:,data:}) truyền action làm tham số
+                -> trong action gán data: res.data
+
+
+
+TODO: list-movie: show all item-movie ra trang list-movie
+- input: mảng từ API để set vào store -> cần link API
+- process:
+    + component:
+        * dispatch (tạo action): để gửi action lên store -> add mảng API listMovie vào store
+        * mapStateToProps: để nhận lại state từ store -> chuyển qua props -> đổ data
+    + action: gọi Axois -> trong .then() gọi dispatch({type:, data:,}) với action là tham số
+        -> refer viết action
+    + reducer (store): bắt action.type -> return {...state, data: action.data}
+
+TODO: detail-movie: click vào nút detail -> qua trong detail -> show đúng detail của movie
+- input: maPhim -> để lấy đúng phim
+- process:
+    + button-detail: add <NavLink> </NavLink to=`/detail/${maPhim}`> -> maPhim đc lấy từ props -> để biết click vào nút của movie nào
+    + route: thêm 1 {} đường dẫn: path, exact, componet -> path="/detail/:maPhim"
+-> quay lại giống process của list-movie -> những có thêm phần lấy id - phần ở action
+    + component (detail):
+        * viết dispatch - gửi lên store -> để add mảng API detailMovie vào store
+        * viết mapStateToProps: để show deitalMovie
+    +   action: gọi Axios:
+        * url: `link-api/${maPhim}`: mã phim đc truyền khi gọi hàm component
+        * maPhim = this.props.match.params.maPhim
+            -> prop này của route -> khi truyền NavLink tại nút button -> route sẽ tạo ra 1 prop -> trong prop đó có match.params
+                -> name của maPhim thì đựa vào path tạo trong route -> path="/detail/:maPhim"
+                
+    ... còn tiếp -> viết tiếp
+
+
+chốt
+-> maPhim ở button để đi đúng đường link
+-> maPhim ở action và component(detail) để gọi đúng link API        
+*/
 
 */
 
